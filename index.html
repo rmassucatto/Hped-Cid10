@@ -59,6 +59,9 @@
   .hidden { display:none }
   .copy { font-size:12px; }
 </style>
+<link rel="manifest" href="manifest.json?v=1">
+<meta name="theme-color" content="#0f9d58">
+<link rel="apple-touch-icon" href="./icon-192.png">
 </head>
 <body>
   <header>
@@ -241,6 +244,13 @@ DB.data = [{"code": "A00.0", "desc": "Cólera devida a Vibrio cholerae 01, biót
 DB.data.sort((a,b)=> a.code.localeCompare(b.code));
 totalEl.textContent = DB.data.length.toString();
 render(DB.data.slice(0, 200));
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js").catch(console.error);
+  });
+}
 </script>
 </body>
 </html>
